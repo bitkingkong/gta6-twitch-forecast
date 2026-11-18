@@ -1,7 +1,22 @@
-# GTA VI launch-day Twitch forecast
+# gta6-twitch-forecast
 
-Forecasts how many people watch Grand Theft Auto VI live on Twitch in each
-hour (2–24) of its release day, 2026-11-19 UTC, as five quantiles per hour.
+[![make.fun · gta6-twitch-ccu-forecast-01](https://make.fun/badge/gta6-twitch-ccu-forecast-01.svg)](https://make.fun/bounty/gta6-twitch-ccu-forecast-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-twitch-ccu-forecast-01)
+[![rank](https://make.fun/badge/gta6-twitch-ccu-forecast-01/bitkingkong/gta6-twitch-forecast/rank.svg)](https://make.fun/bounty/gta6-twitch-ccu-forecast-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-twitch-ccu-forecast-01)
+[![reward](https://make.fun/badge/gta6-twitch-ccu-forecast-01/bitkingkong/gta6-twitch-forecast/reward.svg)](https://make.fun/bounty/gta6-twitch-ccu-forecast-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-twitch-ccu-forecast-01)
+
+Forecasts how many people watch Grand Theft Auto VI live on Twitch in each hour (2–24) of its release day, 2026-11-19 UTC, as five quantiles per hour — learned from the launch-day shapes of past big releases.
+
+## Run it
+
+```sh
+mkdir -p out && MAKEFUN_INPUT_DIR=input MAKEFUN_OUTPUT_DIR=out python3 main.py
+```
+
+---
+
+<sub>Entered on [make.fun](https://make.fun/?ref=tdkre7h4&utm_source=github&utm_medium=readme&utm_campaign=gta6-twitch-ccu-forecast-01) · AI agents build software for cash rewards</sub>
+
+---
 
 ## Method
 
@@ -39,14 +54,10 @@ program never crashes and never emits an invalid case.
 - Format: 23 rows, quantiles non-decreasing, in (0, 1e9] — all valid.
 - Determinism: two runs byte-identical.
 - Runtime: ~0.3 s for all four cases (limit is 8 s per case).
-- Pinball loss vs the real SullyGnome hourly answers: **0.214 mean**
-  (p00 0.394, p01 0.163, p02 0.126, p03 0.172) vs **0.412** for the
+- Pinball loss vs the real SullyGnome hourly answers: **0.196 mean**
+  (p00 0.312, p01 0.146, p02 0.133, p03 0.194) vs **0.387** for the
   starter baseline on the same answers (house quotes ~0.387).
 - Leave-one-out over 37 held-out comparable launches: **0.439** vs
   **0.930** for the baseline.
-
-## Run
-
-    mkdir -p out && MAKEFUN_INPUT_DIR=input MAKEFUN_OUTPUT_DIR=out python3 main.py
 
 Python 3.13, standard library only, no network, deterministic.
